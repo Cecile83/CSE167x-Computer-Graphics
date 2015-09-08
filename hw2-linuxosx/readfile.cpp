@@ -207,23 +207,17 @@ void readfile(const char* filename)
         else if (cmd == "translate") {
           validinput = readvals(s,3,values); 
           if (validinput) {
-
-            // YOUR CODE FOR HW 2 HERE.  
-            // Think about how the transformation stack is affected
-            // You might want to use helper functions on top of file. 
-            // Also keep in mind what order your matrix is!
 	    
-	    // transf=Transform::translate(values[0],values[1],values[2]);
+	    mat4 trans = Transform::translate(values[0],values[1],values[2]);
+	    rightmultiply(trans,transfstack);
           }
         }
         else if (cmd == "scale") {
           validinput = readvals(s,3,values); 
           if (validinput) {
-
-            // YOUR CODE FOR HW 2 HERE.  
-            // Think about how the transformation stack is affected
-            // You might want to use helper functions on top of file.  
-            // Also keep in mind what order your matrix is!
+	    
+	    mat4 sc=Transform::scale(values[0],values[1],values[2]);
+	    rightmultiply(sc,transfstack);
 
           }
         }
@@ -231,12 +225,12 @@ void readfile(const char* filename)
           validinput = readvals(s,4,values); 
           if (validinput) {
 
-            // YOUR CODE FOR HW 2 HERE. 
-            // values[0..2] are the axis, values[3] is the angle.  
-            // You may want to normalize the axis (or in Transform::rotate)
-            // See how the stack is affected, as above.  
-            // Note that rotate returns a mat3. 
-            // Also keep in mind what order your matrix is!
+	    float degrees = values[3];
+	    vec3 axis = vec3(values[0],values[1],values[2]);
+	    mat3 rot = Transform::rotate(degrees,axis);  
+	    
+	    mat4 rot4=mat4(rot[0][0],rot[1][0],rot[2][0],0.,rot[0][1],rot[1][1],rot[2][2],0.,rot[0][2],rot[1][2],rot[2][2],0.,0.,0.,0.,1);
+	    rightmultiply(rot4,transfstack);
 
           }
         }
