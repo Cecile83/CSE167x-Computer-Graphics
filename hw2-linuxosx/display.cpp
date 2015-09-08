@@ -44,7 +44,7 @@ void display()
 
   // I'm including the basic matrix setup for model view to 
   // give some sense of how this works.  
-
+  
   glMatrixMode(GL_MODELVIEW);
   mat4 mv; 
 

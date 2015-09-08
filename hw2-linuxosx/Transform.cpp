@@ -55,7 +55,6 @@ mat4 Transform::lookAt(const vec3 &eye, const vec3 &center, const vec3 &up)
   vec3 bcrossw = glm::cross(up,w) ;
   vec3 u = glm::normalize(bcrossw) ;
   vec3 v = glm::cross(w,u) ;
-  // You will change this return call
   
   ret = mat4(u.x,v.x,w.x,0.,u.y,v.y,w.y,0.,u.z,v.z,w.z,0.,-(u.x*eye.x + u.y*eye.y + u.z*eye.z),-(v.x*eye.x + v.y*eye.y + v.z*eye.z),-(w.x*eye.x + w.y*eye.y + w.z*eye.z),1.);
 
@@ -65,24 +64,29 @@ mat4 Transform::lookAt(const vec3 &eye, const vec3 &center, const vec3 &up)
 mat4 Transform::perspective(float fovy, float aspect, float zNear, float zFar)
 {
   mat4 ret;
-  // YOUR CODE FOR HW2 HERE
-  // New, to implement the perspective transform as well.  
+  float d, theta, A, B;
+  
+  theta = (fovy * pi/180.)/2.;
+  d = 1./tan(theta);
+  
+  A = - (zFar + zNear) / (zFar - zNear);
+  B = - 2. * zFar * zNear / (zFar - zNear);
+  
+  ret = mat4(d/aspect,0.,0.,0.,0.,d,0.,0.,0.,0.,A,-1.,0.,0.,B,0.);
   return ret;
 }
 
 mat4 Transform::scale(const float &sx, const float &sy, const float &sz) 
 {
   mat4 ret;
-  // YOUR CODE FOR HW2 HERE
-  // Implement scaling 
+  ret = mat4(sx,0.,0.,0.,0.,sy,0.,0.,0.,0.,sz,0.,0.,0.,0.,1.);
   return ret;
 }
 
 mat4 Transform::translate(const float &tx, const float &ty, const float &tz) 
 {
   mat4 ret;
-  // YOUR CODE FOR HW2 HERE
-  // Implement translation 
+  ret = mat4(1.,0.,0.,0.,0.,1.,0.,0.,0.,0.,1.,0.,-tx,-ty,-tz,1.);
   return ret;
 }
 
