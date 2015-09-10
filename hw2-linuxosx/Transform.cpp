@@ -86,7 +86,7 @@ mat4 Transform::scale(const float &sx, const float &sy, const float &sz)
 mat4 Transform::translate(const float &tx, const float &ty, const float &tz) 
 {
   mat4 ret;
-  ret = mat4(1.,0.,0.,0.,0.,1.,0.,0.,0.,0.,1.,0.,-tx,-ty,-tz,1.);
+  ret = mat4(1.,0.,0.,0.,0.,1.,0.,0.,0.,0.,1.,0.,tx,ty,tz,1.);
   return ret;
 }
 
