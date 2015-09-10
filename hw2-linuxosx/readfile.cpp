@@ -227,8 +227,7 @@ void readfile(const char* filename)
 
 	    float degrees = values[3];
 	    vec3 axis = vec3(values[0],values[1],values[2]);
-	    vec3 axis_norm = glm::normalize(axis);
-	    mat3 rot = Transform::rotate(degrees,axis_norm);  
+	    mat3 rot = Transform::rotate(degrees,axis);  
 	    
 	    mat4 rot4=mat4(rot[0][0],rot[1][0],rot[2][0],0.,rot[0][1],rot[1][1],rot[2][2],0.,rot[0][2],rot[1][2],rot[2][2],0.,0.,0.,0.,1);
 	    rightmultiply(rot4,transfstack);
