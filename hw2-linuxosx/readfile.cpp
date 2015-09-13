@@ -100,15 +100,15 @@ void readfile(const char* filename)
             validinput = readvals(s, 8, values); // Position/color for lts.
             if (validinput) {
 	      
-	      lightposn[0] = values[0] ;
-	      lightposn[1] = values[1] ;
-	      lightposn[2] = values[2] ;
-	      lightposn[3] = values[3] ;
+	      lightposn[4*numused+0] = values[0] ;
+	      lightposn[4*numused+1] = values[1] ;
+	      lightposn[4*numused+2] = values[2] ;
+	      lightposn[4*numused+3] = values[3] ;
 	      
-	      lightcolor[0] = values[4] ;
-	      lightcolor[1] = values[5] ;
-	      lightcolor[2] = values[6] ;
-	      lightcolor[3] = values[7] ;
+	      lightcolor[4*numused+0] = values[4] ;
+	      lightcolor[4*numused+1] = values[5] ;
+	      lightcolor[4*numused+2] = values[6] ;
+	      lightcolor[4*numused+3] = values[7] ;
 
               ++numused; 
             }
